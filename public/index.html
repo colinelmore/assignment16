@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+        <a href="#" id="add-link">+</a>
+    </head>
+    <body>
+        <h1>Foods</h1>
+
+        <div class="columns two-columns">
+            <div id="food-list" class="columns"></div>
+            <div id="food-details-column">
+                <h2>Details</h2>
+                <div id="food-details"></div>
+            </div>
+        </div>
+        <div id="add-edit-food-container" class="dialog transparent">
+            <span class="close">&times;</span>
+
+            <h3 id="add-edit-title">Add Food</h3>
+            <form id="add-edit-food-form" method="post">
+                <input type="hidden" name="id" value="-1"/>
+                <p>
+                    <label for="name">Food Name:</label>
+                    <input type="text" id="name" name="name" required />
+                </p>
+                <p>
+                    <label for="description">Description:</label>
+                    <input type="text" id="description" name="description" required />
+                </p>
+                <p id="rating-p">
+                    <label class="inline"></label>
+                    <a href="#" id="add-condiment">Add condiment</a>
+                    <section id="cond-boxes"></section>
+                </p>
+                <p>
+                    <button type="submit">Submit</button>
+                </p>
+            </form>
+        </div>
+        <!-- <div class="columns">
+        <div id="food-list"></div>
+        <div id="food-details"></div>
+        </div>
+    -->
+    </body>
+</html>
