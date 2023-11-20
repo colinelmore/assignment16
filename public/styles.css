@@ -64,6 +64,7 @@ label{
     padding: 20px;
     border: 1px solid gray;
     width: 100%;
+    display: transparent;
 }
 
 .close{

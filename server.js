@@ -50,6 +50,41 @@ app.post("/api/foods", upload.single("img"), (req, res) => {
     res.send(food);
 });
 
+app.put("/api/foods/:id", upload.single("img"), (req, res) => {
+    const id = parseInt(req.params.id);
+
+    const food = foods.find((r) => r._id === id);;
+
+    const result = validateFood(req.body);
+
+    if (result.error) {
+        res.status(400).send(result.error.details[0].message);
+        return;
+    }
+
+    food.name = req.body.name;
+    food.description = req.body.description;
+    food.condiments = req.body.condiments.split(",");
+
+    res.send(food);
+});
+
+app.delete("/api/foods/id", upload.single("img"), (req, res) => {
+    const id = parseInt(req.params.id);
+
+    const food = foods.find((f) => f.id === id);
+
+    if (!food) {
+        res.status(404).send("The food was not found");
+        return;
+    }
+
+    const index = foods.indexOf(food);
+    foods.splice(index, 1);
+    res.send(food);
+
+});
+
 const validateFood = (food) => {
     const schema = Joi.object({
         id : Joi.allow(" "),
@@ -61,6 +96,6 @@ const validateFood = (food) => {
     return schema.validate(food);
 }
 
-app.listen(3000, () =>{
+app.listen(4000, () =>{
     console.log("Im listening");
 }); 
