@@ -85,3 +85,6 @@ label{
 .add-edit-food-container{
     display: transparent;
 }
+.transparent{
+    opacity: 0;
+}
