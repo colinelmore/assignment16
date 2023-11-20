@@ -16,37 +16,37 @@ app.get("/", (req, res) => {
 });
 
 let foods = [{
-    id:1 , 
-    name:"Hot Dog", 
-    description: "Weiner on a bun", 
+    id:1,
+    name:"Hot Dog",
+    description: "Weiner on a bun",
     condiments:
     [
         "chili",
-        "cheese", 
+        "cheese",
         "mayo"
     ],
 },
     {
-        id:2, 
-        name:"Hamburger", 
-        description:"Patty with condiments in a bun", 
-        review:"Wack!", rating: "8/10", 
+        id:2,
+        name:"Hamburger",
+        description:"Patty with condiments in a bun",
+        review:"Wack!", rating: "8/10",
         condiments:
         [
-            "cheese", 
-            "mayo", 
+            "cheese",
+            "mayo",
             "mustard"
         ],
     },
     {
         id:3,
-        name:"Pizza", 
-        description:"Bread with melted cheese", 
-        review:"So delicious!", rating: "9/10", 
+        name:"Pizza",
+        description:"Bread with melted cheese",
+        review:"So delicious!", rating: "9/10",
         condiments:
         [
-            "cheese", 
-            "sausage", 
+            "cheese",
+            "sausage",
             "olives"
         ],
     }
@@ -69,11 +69,7 @@ app.post("/api/foods", (req, res) => {
         id: foods.length+1,
         name: req.body.name,
         description: req.body.description,
-        condiments: req.body.condiments.split(","),
-    }
-
-    if (req.file) {
-        food.img = "images/" + req.file.filename;
+        //condiments: req.body.condiments.split(",")
     }
 
     foods.push(food);
@@ -83,7 +79,7 @@ app.post("/api/foods", (req, res) => {
 app.put("/api/foods/:id", upload.single("img"), (req, res) => {
     const id = parseInt(req.params.id);
 
-    const food = foods.find((f) => f.id === id);;
+    const food = foods.find((r) => r.id === id);;
 
     const result = validateFood(req.body);
 

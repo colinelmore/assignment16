@@ -62,22 +62,24 @@ const displayDetails = (food) => {
         li.innerHTML = condiment;
     });
 
-    elink.onclick = (e) => {
+    eLink.onclick = (e) => {
     e.preventDefault();
     document.querySelector(".dialog").classList.remove("transparent");
     document.getElementById("add-edit-title").innerHTML = "Edit Description"
+    console.log("Editing");
     };
 
     dLink.onclick = (e) => {
     e.preventDefault();
     deleteFood(food);
+    console.log("deleting");
     };
 
     populateEditForm(food);
 };
 
 const deleteFood = async(food) => {
-    let response = await fetch(`/api/foods/${food._id}`,{
+    let response = await fetch(`/api/foods/${food.id}`,{
         method: "DELETE",
         headers: {"Content-Type": "application/json;charset=utf-8"}
     });
@@ -98,10 +100,10 @@ const populateEditForm = (food) => {
     form.id.value = food.id;
     form.name.value = food.name;
     form.description.value = food.description;
-    populateCond(food);
+    populateCondiments(food);
 };
 
-const populateCond = (condiments) => {
+const populateCondiments = (food) => {
      const section = document.getElementById("condiment-boxes");
      food.condiments.forEach((condiment)=> {
         const input = document.createElement("input");
@@ -117,7 +119,7 @@ const addEditFood = async (e) => {
     const form = document.getElementById("add-edit-food-form");
     const formData = new FormData(form);
     let response;
-    formData.append("condiments", getCond());
+    formData.append("condiments", getCondiments());
 
     if(form.id.value == -1){
         formData.delete("id");
@@ -154,7 +156,7 @@ const addEditFood = async (e) => {
     showFoods();
 }; 
 
-const getCond = () => {
+const getCondiments = () => {
     const inputs = document.querySelectorAll("#condiment-boxes input");
     const condiments = [];
 
